@@ -1,0 +1,4 @@
+INSERT INTO "artist" VALUES (default, null, null, 'Yung Zime');
+
+INSERT INTO "track" VALUES (default, 1,4.7, 'Paralyzed', 2022);
+INSERT INTO "song" VALUES (1, 1);
