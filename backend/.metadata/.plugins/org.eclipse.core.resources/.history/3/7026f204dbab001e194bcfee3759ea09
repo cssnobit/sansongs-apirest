@@ -1,0 +1,5 @@
+package com.sansongs.sansongs.repository;
+
+public interface TrackRepository {
+
+}

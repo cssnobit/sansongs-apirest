@@ -1,0 +1,8 @@
+package com.sansongs.sansongs.repository;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TrackRepository {
+
+}
