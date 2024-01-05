@@ -1,0 +1,1 @@
+INSERT (title, avg_rating, year) INTO "track" VALUES ("ED4", 4.7, 2022);

@@ -1,0 +1,1 @@
+INSERT INTO "track" VALUES (default, 4.7, 'ED4', 2022), (default, 4.9, 'Will I Fall', 2023);

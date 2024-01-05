@@ -1,0 +1,19 @@
+# application port
+server.port=8009
+
+# h2 configuration
+spring.h2.console.enabled=true
+speing.datasource.url=jdbc:h2:mem:b3a403d2-a6bb-4eb7-b281-2555bb1ae7dc
+spring.datasource.driver-class-name=org.h2.Driver
+
+# h2 access
+spring.datasource.username=sa
+spring.datasource.password=
+
+# dialect
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+spring.jpa.properties.hibernate.globally_quoted_identifiers=true
+spring.jpa.properties.hibernate.globally_quoted_identifiers_skip_column_definitions=true

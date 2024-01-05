@@ -1,0 +1,1 @@
+INSERT INTO "track" VALUES (default, 4.7, 'Paralyzed', 2022), (default, 4.9, 'Will I Fall', 2023), (default, 4.8, 'Facade', 2023), (default, 4.3, 'Perfurm', 2023);
