@@ -35,7 +35,6 @@ INDEX VERSION 1.132+C:\Users\user\Documents\arquivos importantes\material estudo
 3571340962.index
 2897317371.index
 59348100.index
-859922242.index
 533156549.index
 2323238798.index
 1653254618.index

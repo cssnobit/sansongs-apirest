@@ -1,5 +1,6 @@
 package com.sansongs.sansongs.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,5 +18,6 @@ public class Country {
 	@Id
 	private Long id;
 	
+	@Column(nullable = false)
 	private String name;
 }
