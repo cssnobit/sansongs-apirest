@@ -16,4 +16,6 @@ public class TypeMusic {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
+	
+	private String name;
 }
