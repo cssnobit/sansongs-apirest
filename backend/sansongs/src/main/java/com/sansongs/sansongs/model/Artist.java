@@ -1,5 +1,6 @@
 package com.sansongs.sansongs.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -32,13 +33,13 @@ public class Artist {
 	private String description;
 	
 	@ManyToOne
-	@Column(nullable = false)
+	@JoinColumn(nullable = false)
 	private Country country;
 	
 	@ManyToMany
 	@JoinTable(name = "artist_album", 
 			joinColumns = @JoinColumn(name = "artist_id"), 
 			inverseJoinColumns = @JoinColumn(name = "album_id"))
-	private List<Album> albuns;
+	private List<Album> albuns = new ArrayList<>();
 	
 }

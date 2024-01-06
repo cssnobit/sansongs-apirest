@@ -1,0 +1,9 @@
+INSERT INTO "country" VALUES (default, 'Brasil'), (default, 'Suécia'), (default, 'Rússia'), (default, 'França'), (default, 'Finlândia');
+
+INSERT INTO "streaming" VALUES (default, 'Soundcloud'), (default, 'Spotify'), (default, 'Youtube Music');
+
+INSERT INTO "artist" VALUES (default, null, null, 'Yung Zime', 2), (default, null, null, 'Rauf & Faik', 3), (default, null, null, 'Paradoxx', 2), (default, null, null, 'College', 4), (default, null, null, 'AOKAMI', 5);
+
+INSERT INTO "track" VALUES (default, 4.7, 'Paralyzed', 2022), (default, 4.8, 'Facade', 2023), (default, 4.3, 'Perfurm', 2023), (default, 4.9, 'Will I Fall', 2023);
+
+INSERT INTO "song" VALUES (1, 1), (4, 1), (2, 1), (2, 5), (3, 2);

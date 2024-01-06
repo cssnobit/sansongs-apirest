@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,18 +43,18 @@ public class Track {
 			@Column(nullable = false)
 	private List<Artist> artists = new ArrayList<>();
 	
+	@JsonIgnore
 	@ManyToOne
 	private Album album;
 	
 	@ManyToMany
-	@Column(nullable = false)
 	@JoinTable(name = "track_streaming", 
 			joinColumns = @JoinColumn(name = "track_id"), 
 			inverseJoinColumns = @JoinColumn(name = "streaming_id"))
-	private List<Streaming> streamings;
+	private List<Streaming> streamings = new ArrayList<>();
 	
 	@ManyToOne
-	@Column(nullable = false)
+	@JoinColumn(nullable = false)
 	private TypeMusic typeMusic;
 	
 	private String imgUrl;
