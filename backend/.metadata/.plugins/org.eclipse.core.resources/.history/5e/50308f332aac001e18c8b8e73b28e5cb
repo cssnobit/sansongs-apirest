@@ -1,0 +1,12 @@
+package com.sansongs.sansongs.model;
+
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Data
+@Entity
+public class Streaming {
+
+}

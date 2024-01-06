@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,4 +40,7 @@ public class Track {
 	inverseJoinColumns = @JoinColumn(name = "artist_id"))
 	@Column(nullable = false)
 	private List<Artist> artists = new ArrayList<>();
+	
+	@Embedded
+	private CoverImage coverImage;
 }
