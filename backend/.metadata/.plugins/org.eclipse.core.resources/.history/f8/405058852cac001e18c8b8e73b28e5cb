@@ -51,9 +51,5 @@ public class Track {
 			inverseJoinColumns = @JoinColumn(name = "streaming_id"))
 	private List<Streaming> streamings;
 	
-	@ManyToOne
-	@Column(nullable = false)
-	private TypeMusic typeMusic;
-	
 	private String imgUrl;
 }

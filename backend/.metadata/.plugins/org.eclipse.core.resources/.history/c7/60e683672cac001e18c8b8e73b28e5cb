@@ -44,16 +44,5 @@ public class Track {
 	@ManyToOne
 	private Album album;
 	
-	@ManyToMany
-	@Column(nullable = false)
-	@JoinTable(name = "track_streaming", 
-			joinColumns = @JoinColumn(name = "track_id"), 
-			inverseJoinColumns = @JoinColumn(name = "streaming_id"))
-	private List<Streaming> streamings;
-	
-	@ManyToOne
-	@Column(nullable = false)
-	private TypeMusic typeMusic;
-	
 	private String imgUrl;
 }

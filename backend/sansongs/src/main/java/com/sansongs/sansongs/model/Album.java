@@ -22,9 +22,9 @@ public class Album {
 	@Column(nullable = false)
 	private String name;
 	
-	@Embedded
-	private CoverImage coverImage;
+	private String imgUrl;
 	
+	@Column(nullable = false)
 	private Integer year;
 	
 }
