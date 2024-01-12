@@ -1,10 +1,13 @@
 package com.sansongs.sansongs.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,14 +37,13 @@ public class Album {
 	private Integer year;
 	
 	@OneToMany(mappedBy = "album")
-	@Column(nullable = false)
 	private List<Track> tracks = new ArrayList<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "artist_album", 
 			joinColumns = @JoinColumn(name = "artist_id"), 
 			inverseJoinColumns = @JoinColumn(name = "album_id"))
 	@Column(nullable = false)
-	private List<Artist> artists = new ArrayList<>();
+	private Set<Artist> artists = new HashSet<>();
 	
 }
