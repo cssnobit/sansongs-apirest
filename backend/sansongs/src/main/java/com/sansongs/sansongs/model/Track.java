@@ -1,9 +1,7 @@
 package com.sansongs.sansongs.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,12 +16,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 @Entity
+@Table(name = "\"track\"")
 public class Track {
 	
 	@EqualsAndHashCode.Include
@@ -35,13 +35,13 @@ public class Track {
 	private String title;
 	
 	@Column(nullable = false)
-	private Integer year;
+	private Integer yearRelease;
 	
 	@Column(precision = 2, scale = 1)
 	private BigDecimal avgRating;
 	
 	@ManyToMany
-	@JoinTable(name = "song", joinColumns = @JoinColumn(name = "track_id"),
+	@JoinTable(name = "\"song\"", joinColumns = @JoinColumn(name = "track_id"),
 			inverseJoinColumns = @JoinColumn(name = "artist_id"))
 			@Column(nullable = false)
 	private Set<Artist> artists = new HashSet<>();

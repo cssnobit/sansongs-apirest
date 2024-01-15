@@ -15,12 +15,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 @Entity
+@Table(name = "\"album\"")
 public class Album {
 
 	@EqualsAndHashCode.Include
@@ -34,7 +36,7 @@ public class Album {
 	private String imgUrl;
 	
 	@Column(nullable = false)
-	private Integer year;
+	private Integer yearRelease;
 	
 	@OneToMany(mappedBy = "album")
 	private List<Track> tracks = new ArrayList<>();
