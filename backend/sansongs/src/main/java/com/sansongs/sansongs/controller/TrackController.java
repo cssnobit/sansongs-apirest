@@ -3,13 +3,14 @@ package com.sansongs.sansongs.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.PropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -45,14 +46,22 @@ public class TrackController {
 		return ResponseEntity.ok(trackFound.get());
 	}
 	
-//	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public ResponseEntity<?> addTrack(@RequestBody Track track) {
-		try {
-			return ResponseEntity.created(null).body(trackService.save(track));			
-		} catch(PropertyValueException e) {			
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+	public Track addTrack(@RequestBody Track track) {
+		return trackService.save(track);
 	}
-
+	
+	@DeleteMapping("/{trackId}")
+	public ResponseEntity<Track> removeTrack(@PathVariable Long trackId) {
+		Optional<Track> trackFound = trackService.getTrackById(trackId);
+		
+		if(trackFound.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		trackService.remove(trackId);
+		return ResponseEntity.noContent().build();
+	}
+	
 }

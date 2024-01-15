@@ -27,4 +27,10 @@ public class TrackService {
 	public Track save(Track track) {
 		return trackRepository.save(track);
 	}
+	
+	public void remove(Long trackId) {
+		Optional<Track> trackFound = trackRepository.findById(trackId);
+		
+		trackRepository.delete(trackFound.get());
+	}
 }
