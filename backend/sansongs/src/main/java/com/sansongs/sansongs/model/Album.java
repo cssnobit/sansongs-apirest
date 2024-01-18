@@ -36,7 +36,7 @@ public class Album {
 	private String imgUrl;
 	
 	@Column(nullable = false)
-	private Integer yearRelease;
+	private Integer releaseYear;
 	
 	@OneToMany(mappedBy = "album")
 	private List<Track> tracks = new ArrayList<>();

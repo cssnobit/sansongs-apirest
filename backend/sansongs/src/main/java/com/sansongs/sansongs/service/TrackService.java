@@ -2,11 +2,12 @@ package com.sansongs.sansongs.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-import org.hibernate.PropertyValueException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sansongs.sansongs.model.Artist;
 import com.sansongs.sansongs.model.Track;
 import com.sansongs.sansongs.repository.TrackRepository;
 
@@ -25,6 +26,8 @@ public class TrackService {
 	}
 	
 	public Track save(Track track) {
+		Set<Artist> artists = track.getArtists();
+
 		return trackRepository.save(track);
 	}
 	

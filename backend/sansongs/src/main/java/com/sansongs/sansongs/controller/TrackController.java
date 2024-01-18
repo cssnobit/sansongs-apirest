@@ -3,6 +3,7 @@ package com.sansongs.sansongs.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sansongs.sansongs.model.Track;
 import com.sansongs.sansongs.repository.TrackRepository;
 import com.sansongs.sansongs.service.TrackService;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/tracks")
@@ -64,4 +67,17 @@ public class TrackController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PutMapping("/{trackId}")
+	public ResponseEntity<Track> updateTrack(@PathVariable Long trackId, @RequestBody Track track) {
+		Optional<Track> trackFound = trackService.getTrackById(trackId);
+		
+		if(trackFound.isPresent()) {		
+			BeanUtils.copyProperties(track, trackFound.get(), "id");
+			Track trackUpdated = trackService.save(trackFound.get());
+			
+			return ResponseEntity.ok(trackUpdated);
+		}
+		
+		throw new EntityNotFoundException();
+	}
 }

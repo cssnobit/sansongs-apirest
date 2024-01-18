@@ -35,7 +35,7 @@ public class Track {
 	private String title;
 	
 	@Column(nullable = false)
-	private Integer yearRelease;
+	private Integer releaseYear;
 	
 	@Column(precision = 2, scale = 1)
 	private BigDecimal avgRating;
@@ -51,7 +51,7 @@ public class Track {
 	private Album album;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "track_streaming", 
+	@JoinTable(name = "\"track_streaming\"", 
 			joinColumns = @JoinColumn(name = "track_id"), 
 			inverseJoinColumns = @JoinColumn(name = "streaming_id"))
 	private Set<Streaming> streamings = new HashSet<>();
