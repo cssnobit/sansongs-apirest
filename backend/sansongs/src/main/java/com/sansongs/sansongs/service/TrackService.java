@@ -9,13 +9,19 @@ import org.springframework.stereotype.Service;
 
 import com.sansongs.sansongs.model.Artist;
 import com.sansongs.sansongs.model.Track;
+import com.sansongs.sansongs.repository.ArtistRepository;
 import com.sansongs.sansongs.repository.TrackRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class TrackService {
 
 	@Autowired
 	private TrackRepository trackRepository;
+	
+	@Autowired
+	private ArtistRepository artistRepository;
 	
 	public List<Track> getAllTracks(){
 		return trackRepository.findAll();
@@ -28,6 +34,11 @@ public class TrackService {
 	public Track save(Track track) {
 		Set<Artist> artists = track.getArtists();
 
+		for(Artist artist: artists) {
+			if(artist.getId() == null || artistRepository.findById(artist.getId()).isEmpty()) {
+				throw new EntityNotFoundException("Artist not found");
+			}
+		}
 		return trackRepository.save(track);
 	}
 	

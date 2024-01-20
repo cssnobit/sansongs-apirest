@@ -1,6 +1,6 @@
 INSERT INTO "country" VALUES (default, 'Brasil'), (default, 'Suécia'), (default, 'Rússia'), (default, 'França'), (default, 'Finlândia');
 
-INSERT INTO "streaming" VALUES (default, 'Soundcloud'), (default, 'Spotify'), (default, 'Youtube Music');
+INSERT INTO "streaming" VALUES (default, 'SoundCloud'), (default, 'Spotify'), (default, 'Youtube Music');
 
 INSERT INTO "type_music" VALUES (default, 'Metal'), (default, 'Rap & Hip-Hop'), (default, 'Pop'), (default, 'Eletrônica'), (default, 'Rock alternativo');
 

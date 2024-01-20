@@ -72,12 +72,17 @@ public class TrackController {
 		Optional<Track> trackFound = trackService.getTrackById(trackId);
 		
 		if(trackFound.isPresent()) {		
-			BeanUtils.copyProperties(track, trackFound.get(), "id");
-			Track trackUpdated = trackService.save(trackFound.get());
+			BeanUtils.copyProperties(track, trackFound.get(), "id");			
+			try {				
+				Track trackUpdated = trackService.save(trackFound.get());
+				
+				return ResponseEntity.ok(trackUpdated);
+			} catch(EntityNotFoundException e) {
+				return ResponseEntity.badRequest().build();
+			}
 			
-			return ResponseEntity.ok(trackUpdated);
 		}
 		
-		throw new EntityNotFoundException();
+		return ResponseEntity.notFound().build();
 	}
 }
