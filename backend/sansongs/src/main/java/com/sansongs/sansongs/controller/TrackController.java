@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sansongs.sansongs.model.Track;
-import com.sansongs.sansongs.repository.TrackRepository;
 import com.sansongs.sansongs.service.TrackService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -26,10 +25,7 @@ import jakarta.persistence.EntityNotFoundException;
 @RestController
 @RequestMapping("/tracks")
 public class TrackController {
-	
-	@Autowired
-	private TrackRepository trackRepository;
-	
+
 	@Autowired
 	private TrackService trackService;
 	
