@@ -22,4 +22,8 @@ public class ArtistService {
 	public Optional<Artist> getArtistById(Long artistId) {
 		return artistRepository.findById(artistId);
 	}
+	
+	public Artist save(Artist artist) {
+		return artistRepository.save(artist);
+	}
 }

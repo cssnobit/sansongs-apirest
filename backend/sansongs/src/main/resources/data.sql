@@ -2,7 +2,7 @@ INSERT INTO "country" VALUES (default, 'Brasil'), (default, 'Suécia'), (default
 
 INSERT INTO "streaming" VALUES (default, 'SoundCloud'), (default, 'Spotify'), (default, 'Youtube Music');
 
-INSERT INTO "type_music" VALUES (default, 'Metal'), (default, 'Rap & Hip-Hop'), (default, 'Pop'), (default, 'Eletrônica'), (default, 'Rock alternativo');
+INSERT INTO "type_music" VALUES (default, 'Metal'), (default, 'Rap & Hip-Hop'), (default, 'Pop'), (default, 'Eletrônica'), (default, 'Rock alternativo'), (default, 'Rock');
 
 INSERT INTO "artist" VALUES (default, null, null, 'Yung Zime', 2), (default, null, null, 'Rauf & Faik', 3), (default, null, null, 'Paradoxx', 2), (default, null, null, 'College', 4), (default, null, null, 'AOKAMI', 5);
 

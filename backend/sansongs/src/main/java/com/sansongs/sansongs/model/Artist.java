@@ -35,7 +35,7 @@ public class Artist {
 	
 	private String description;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	private Country country;
 	
