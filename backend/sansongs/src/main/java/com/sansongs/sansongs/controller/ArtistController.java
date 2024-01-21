@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,5 +47,24 @@ public class ArtistController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Artist addArtist(@RequestBody Artist artist) {
 		return artistService.save(artist);
+	}
+	
+	@DeleteMapping("/{artistId}")
+	public ResponseEntity removeArtist(@PathVariable Long artistId) {
+		Optional<Artist> artistFound = artistService.getArtistById(artistId);
+		
+		if(artistFound.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		try {
+			artistService.remove(artistId);		
+			
+			return ResponseEntity.noContent().build();	
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).build();
+		}
+		
+		
 	}
 }

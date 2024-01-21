@@ -44,11 +44,14 @@ public class TrackController {
 		
 		return ResponseEntity.ok(trackFound.get());
 	}
-	
-	@ResponseStatus(HttpStatus.CREATED)
+
 	@PostMapping
-	public Track addTrack(@RequestBody Track track) {
-		return trackService.save(track);
+	public ResponseEntity<?> addTrack(@RequestBody Track track) {
+		try {			
+			return ResponseEntity.status(HttpStatus.CREATED).body(trackService.save(track));
+		} catch(EntityNotFoundException e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 	
 	@DeleteMapping("/{trackId}")
