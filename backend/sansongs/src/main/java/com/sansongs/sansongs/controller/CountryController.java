@@ -44,7 +44,6 @@ public class CountryController {
 		
 		return ResponseEntity.notFound().build();
 	}
-	
 
 	@PostMapping
 	public ResponseEntity<Country> addCountry(@RequestBody Country country) {
@@ -56,4 +55,21 @@ public class CountryController {
 		}
 	}
 	
+	@DeleteMapping("/{countryId}")
+	public ResponseEntity<Country> removeArtist(@PathVariable Long countryId) {
+		Optional<Country> countryFound = countryService.getCountryById(countryId);
+		
+		if(countryFound.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		try {
+			countryService.remove(countryId);		
+			
+			return ResponseEntity.noContent().build();	
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).build();
+		}
+		
+	}
 }

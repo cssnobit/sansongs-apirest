@@ -34,4 +34,13 @@ public class CountryService {
 		}
 	}
 	
+	public void remove(Long countryId) {
+		Optional<Country> countryFound = countryRepository.findById(countryId);
+		try {
+			countryRepository.delete(countryFound.get());
+		} catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException
+			(String.format("Country with id %d cannot be removed", countryId));
+		}
+	}
 }
