@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sansongs.sansongs.exception.ErrorInDataException;
 import com.sansongs.sansongs.model.Track;
 import com.sansongs.sansongs.service.TrackService;
 
@@ -46,10 +46,11 @@ public class TrackController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> addTrack(@RequestBody Track track) {
-		try {			
-			return ResponseEntity.status(HttpStatus.CREATED).body(trackService.save(track));
-		} catch(EntityNotFoundException e) {
+	public ResponseEntity<Track> addTrack(@RequestBody Track track) {
+		try {	
+			Track trackCreated = trackService.save(track);
+			return ResponseEntity.status(HttpStatus.CREATED).body(trackCreated);
+		} catch(ErrorInDataException e) {
 			return ResponseEntity.badRequest().build();
 		}
 	}

@@ -2,17 +2,15 @@ package com.sansongs.sansongs.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.sansongs.sansongs.model.Artist;
+import com.sansongs.sansongs.exception.ErrorInDataException;
 import com.sansongs.sansongs.model.Track;
 import com.sansongs.sansongs.repository.ArtistRepository;
 import com.sansongs.sansongs.repository.TrackRepository;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class TrackService {
@@ -32,14 +30,11 @@ public class TrackService {
 	}
 	
 	public Track save(Track track) {
-		Set<Artist> artists = track.getArtists();
-
-		for(Artist artist: artists) {
-			if(artist.getId() == null || artistRepository.findById(artist.getId()).isEmpty()) {
-				throw new EntityNotFoundException("Artist not found");
-			}
+		try {			
+			return trackRepository.save(track);
+		} catch(DataAccessException e) {
+			throw new ErrorInDataException("Property cannot be null or association id not exists");
 		}
-		return trackRepository.save(track);
 	}
 	
 	public void remove(Long trackId) {
