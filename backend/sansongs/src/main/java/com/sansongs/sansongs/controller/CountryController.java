@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sansongs.sansongs.exception.ErrorInDataException;
-import com.sansongs.sansongs.model.Artist;
 import com.sansongs.sansongs.model.Country;
 import com.sansongs.sansongs.service.CountryService;
 
@@ -71,5 +70,25 @@ public class CountryController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 		
+	}
+	
+	@PutMapping("/{countryId}")
+	public ResponseEntity<Country> updateArtist(@PathVariable Long countryId,
+			@RequestBody Country country) {
+		
+		Optional<Country> countryFound = countryService.getCountryById(countryId);
+		
+		if(countryFound.isPresent()) {
+			BeanUtils.copyProperties(country, countryFound.get(), "id");
+			try {				
+				Country countryUpdated = countryService.save(countryFound.get());
+				
+				return ResponseEntity.ok(countryUpdated);
+			} catch(ErrorInDataException e) {
+				return ResponseEntity.badRequest().build();
+			}
+		}
+		
+		return ResponseEntity.notFound().build();
 	}
 }
