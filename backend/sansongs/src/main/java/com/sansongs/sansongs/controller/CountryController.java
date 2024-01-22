@@ -45,4 +45,15 @@ public class CountryController {
 		return ResponseEntity.notFound().build();
 	}
 	
+
+	@PostMapping
+	public ResponseEntity<Country> addCountry(@RequestBody Country country) {
+		try {		
+			Country countryCreated = countryService.save(country);
+			return ResponseEntity.status(HttpStatus.CREATED).body(countryCreated);
+		} catch(ErrorInDataException e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
 }

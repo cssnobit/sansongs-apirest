@@ -26,4 +26,12 @@ public class CountryService {
 		return countryRepository.findById(countryId);
 	}
 	
+	public Country save(Country country) {
+		try {			
+			return countryRepository.save(country);
+		} catch(DataAccessException e) {
+			throw new ErrorInDataException("Property cannot be null or association id not exists");
+		}
+	}
+	
 }
