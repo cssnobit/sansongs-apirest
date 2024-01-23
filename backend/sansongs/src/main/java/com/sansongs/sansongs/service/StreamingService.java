@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.sansongs.sansongs.exception.ErrorInDataException;
@@ -30,6 +31,17 @@ public class StreamingService {
 			return streamingRepository.save(streaming);
 		} catch(DataAccessException e) {
 			throw new ErrorInDataException("Property cannot be null");
+		}
+	}
+	
+	public void remove(Long streamingId) {
+		Optional<Streaming> streamingFound = streamingRepository.findById(streamingId);
+		
+		try {			
+			streamingRepository.delete(streamingFound.get());
+		} catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException
+			(String.format("Streaming with id %d cannot be removed", streamingId));
 		}
 	}
 }
