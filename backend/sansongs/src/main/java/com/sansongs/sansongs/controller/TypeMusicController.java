@@ -54,5 +54,20 @@ public class TypeMusicController {
 		}
 	}
 	
-	
+	@DeleteMapping("/{typeMusicId}")
+	public ResponseEntity<Streaming> removeTypeMusic(@PathVariable Long typeMusicId) {
+		Optional<TypeMusic> typeMusicFound = typeMusicService.getTypeMusicById(typeMusicId);
+		
+		if(typeMusicFound.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		try {
+			typeMusicService.remove(typeMusicId);
+			return ResponseEntity.noContent().build();
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).build();
+		}
+	}
+
 }

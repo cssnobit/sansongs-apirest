@@ -33,5 +33,15 @@ public class TypeMusicService {
 			throw new ErrorInDataException("Property cannot be null");
 		}
 	}
-
+	
+	public void remove(Long typeMusicId) {
+		Optional<TypeMusic> typeMusicFound = typeMusicRepository.findById(typeMusicId);
+		
+		try {			
+			typeMusicRepository.delete(typeMusicFound.get());
+		} catch(DataIntegrityViolationException e) {
+			throw new DataIntegrityViolationException
+			(String.format("TypeMusic with id %d is in use", typeMusicId));
+		}
+	}
 }
