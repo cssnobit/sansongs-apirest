@@ -70,4 +70,23 @@ public class TypeMusicController {
 		}
 	}
 
+	@PutMapping("/{typeMusicId}")
+	public ResponseEntity<TypeMusic> updateTypeMusic(@PathVariable Long typeMusicId,
+			@RequestBody TypeMusic typeMusic) {
+		
+		Optional<TypeMusic> typeMusicFound = typeMusicService.getTypeMusicById(typeMusicId);
+		
+		if(typeMusicFound.isPresent()) {
+			BeanUtils.copyProperties(typeMusic, typeMusicFound.get(), "id");
+			try {				
+				TypeMusic typeMusicUpdated = typeMusicService.save(typeMusicFound.get());
+				
+				return ResponseEntity.ok(typeMusicUpdated);
+			} catch(ErrorInDataException e) {
+				return ResponseEntity.badRequest().build();
+			}
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 }
