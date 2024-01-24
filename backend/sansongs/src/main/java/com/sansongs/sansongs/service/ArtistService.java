@@ -40,7 +40,7 @@ public class ArtistService {
 			artistRepository.delete(artistFound.get());
 		} catch(DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException
-			(String.format("Artist with id %d cannot be removed", artistId));
+			(String.format("Artist with id %d is in use", artistId));
 		}
 	}
 }

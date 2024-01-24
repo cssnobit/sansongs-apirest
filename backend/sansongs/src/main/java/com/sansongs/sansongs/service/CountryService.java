@@ -40,7 +40,7 @@ public class CountryService {
 			countryRepository.delete(countryFound.get());
 		} catch(DataIntegrityViolationException e) {
 			throw new DataIntegrityViolationException
-			(String.format("Country with id %d cannot be removed", countryId));
+			(String.format("Country with id %d is in use", countryId));
 		}
 	}
 }
