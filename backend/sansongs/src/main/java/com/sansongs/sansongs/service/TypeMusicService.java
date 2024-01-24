@@ -26,4 +26,12 @@ public class TypeMusicService {
 		return typeMusicRepository.findById(typeMusicId);
 	}
 	
+	public TypeMusic save(TypeMusic streaming) {
+		try {
+			return typeMusicRepository.save(streaming);
+		} catch(DataAccessException e) {
+			throw new ErrorInDataException("Property cannot be null");
+		}
+	}
+
 }

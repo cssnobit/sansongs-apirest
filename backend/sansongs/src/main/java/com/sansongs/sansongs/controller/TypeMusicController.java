@@ -45,5 +45,14 @@ public class TypeMusicController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@PostMapping
+	public ResponseEntity<TypeMusic> addTypeMusic(@RequestBody TypeMusic typeMusic) {
+		try {
+			return ResponseEntity.status(HttpStatus.CREATED).body(typeMusicService.save(typeMusic));
+		} catch(ErrorInDataException e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
 	
 }
